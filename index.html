@@ -10,159 +10,130 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        /* CRITICAL FIX: This ensures padding doesn't make elements wider than the screen */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         :root {
-            /* Deeper, more sophisticated blue theme */
-            --bg-dark: #0D162B; /* Very dark blue */
-            --bg-light: #1A2641; /* Slightly lighter blue for gradient top */
-            
-            /* Glass card colors */
-            --card-bg: rgba(25, 38, 65, 0.7); /* Slightly darker card with transparency */
-            --card-border: rgba(255, 255, 255, 0.12); /* Brighter border for better contrast */
-            
-            /* Text & Accents */
-            --text-main: #E0E7FF; /* Off-white for main text */
-            --text-sub: #A3B3D9; /* Lighter blue-grey for secondary text */
-            --accent: #63B3ED; /* Softer, appealing light blue */
-            --btn-hover: #4299E1; /* Darker blue on hover */
+            --bg-dark: #0D162B;
+            --bg-light: #1A2641;
+            --card-bg: rgba(25, 38, 65, 0.85); /* Slightly less transparent for better text reading */
+            --card-border: rgba(255, 255, 255, 0.1);
+            --text-main: #E0E7FF;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;
+            --btn-hover: #0ea5e9;
         }
         
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-dark);
-            background-image: radial-gradient(circle at 50% 0%, var(--bg-light) 0%, var(--bg-dark) 70%);
+            background-image: radial-gradient(circle at 50% 0%, var(--bg-light) 0%, var(--bg-dark) 80%);
             color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
-            box-sizing: border-box; /* Include padding in element's total width and height */
-            animation: fadeIn 1s ease-out forwards;
-            opacity: 0; /* Start invisible for fade-in */
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            padding: 1rem; /* Small padding to prevent edge touching on mobile */
         }
 
         .container {
             text-align: center;
             background: var(--card-bg);
-            backdrop-filter: blur(15px); /* Increased blur for more pronounced glass effect */
-            -webkit-backdrop-filter: blur(15px);
-            padding: 3.5rem 3rem; /* Slightly more vertical padding */
-            border-radius: 28px; /* Slightly larger border radius */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            /* Responsive padding: Less on mobile, more on desktop */
+            padding: clamp(2rem, 5vw, 4rem); 
+            border-radius: 24px;
             border: 1px solid var(--card-border);
-            box-shadow: 0 25px 60px rgba(0,0,0,0.6); /* Deeper shadow */
-            max-width: 680px; /* Wider card for better presence on large screens */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             width: 100%;
-            box-sizing: border-box;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        
-        /* Subtle hover effect on the card itself */
-        .container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 70px rgba(0,0,0,0.7);
+            max-width: 600px; /* Limits width on big screens */
+            margin: 0 auto;
         }
 
         h1 {
-            font-size: 0.95rem; /* Slightly larger and clearer heading */
-            font-weight: 700; /* Bolder */
+            font-size: 0.8rem;
+            font-weight: 700;
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 3.5px;
-            margin-bottom: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
             opacity: 0.9;
         }
 
         .domain-name {
-            /* Clamp sizing for responsive text: min 1.8rem, fluid 5.5vw, max 4rem */
-            font-size: clamp(1.8rem, 5.5vw, 4rem); 
+            /* FIXED: Much more conservative sizing */
+            font-size: clamp(1.5rem, 5vw, 2.8rem); 
             font-weight: 800;
-            margin: 0 0 1.8rem 0;
-            line-height: 1.15; /* Better line spacing for larger text */
-            word-break: break-word; /* Prevents overflow */
-            background: linear-gradient(to right, #ffffff, #e2e8f0); /* Brighter gradient */
+            margin: 0 0 1.5rem 0;
+            line-height: 1.2;
+            
+            /* Safety: Forces long text to wrap instead of breaking layout */
+            word-wrap: break-word; 
+            overflow-wrap: break-word;
+            
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         p {
             color: var(--text-sub);
-            font-size: 1.15rem; /* Slightly larger paragraph text for readability */
-            line-height: 1.7;
-            margin-bottom: 2.8rem; /* More space below paragraph */
-            max-width: 90%; /* Restrict width for better readability on wide screens */
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
             margin-left: auto;
             margin-right: auto;
+            max-width: 90%;
         }
 
         .btn {
             display: inline-block;
             background-color: var(--accent);
-            color: var(--bg-dark); /* Button text color matches background */
-            padding: 1.3rem 2.8rem; /* More prominent button */
+            color: #0f172a;
+            /* Reduced side padding to prevent mobile overflow */
+            padding: 1rem 1.5rem; 
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.15rem;
-            border-radius: 14px; /* Larger border radius for button */
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 340px; /* Slightly wider button */
-            box-shadow: 0 6px 25px rgba(99, 179, 237, 0.35); /* Stronger glow */
+            font-size: 1.1rem;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            width: 100%; /* Takes up available space */
+            max-width: 320px; /* But never gets wider than this */
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
         }
 
         .btn:hover {
             background-color: var(--btn-hover);
-            transform: translateY(-3px) scale(1.02); /* More noticeable hover */
-            box-shadow: 0 8px 30px rgba(99, 179, 237, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.4);
         }
 
         .phone-number {
-            margin-top: 2.2rem; /* More space above phone number */
-            font-size: 1.05rem;
+            margin-top: 1.5rem;
+            font-size: 1rem;
             color: var(--text-sub);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px; /* Increased gap */
+            gap: 8px;
             font-weight: 600;
         }
         
         .phone-icon {
-            color: var(--text-main); 
-            font-size: 1.2em; /* Slightly larger icon */
+            color: var(--text-main);
         }
 
-        /* Mobile specific adjustments */
-        @media (max-width: 600px) {
-            body {
-                padding: 15px; /* Less padding on very small screens */
+        /* Mobile Specific Tweaks */
+        @media (max-width: 480px) {
+            .domain-name {
+                font-size: 1.6rem; /* Hard limit for very small phones */
             }
             .container {
-                padding: 2.5rem 1.8rem; /* Adjust card padding for smaller screens */
-                border-radius: 20px; /* Slightly smaller radius on mobile */
-            }
-            h1 {
-                font-size: 0.8rem;
-                letter-spacing: 2.5px;
-            }
-            p {
-                font-size: 1rem;
-                max-width: 100%; /* Allow paragraph to take full width */
-                margin-bottom: 2rem;
-            }
-            .btn {
-                padding: 1.1rem 2rem;
-                font-size: 1rem;
-                max-width: 100%; /* Button takes full width on small screens */
-            }
-            .phone-number {
-                margin-top: 1.8rem;
-                font-size: 0.95rem;
+                padding: 2rem 1.5rem; /* Tighter padding on mobile */
             }
         }
     </style>
@@ -172,7 +143,7 @@
     <div class="container">
         <h1>Available For Purchase</h1>
         <div class="domain-name" id="domain-display">www.example.com</div>
-        <p>This premium domain is currently available. Secure this digital asset for your brand today.</p>
+        <p>This premium domain name is currently available. If you are interested, please inquire below.</p>
         
         <a href="mailto:your-email@example.com?subject=Domain Inquiry" class="btn" id="contact-btn">
             Inquire via Email
@@ -184,17 +155,9 @@
     </div>
 
     <script>
-        // 1. Get the hostname (e.g., www.example.com)
         let cleanHost = window.location.hostname;
-
-        // 2. Optional: Remove 'www.' if you want a cleaner look (e.g. just example.com)
-        // Remove the "//" at the start of the next line to enable this:
-        // cleanHost = cleanHost.replace(/^www\./, '');
-
-        // 3. Insert text
         document.getElementById('domain-display').innerText = cleanHost;
         
-        // 4. Update email link subject
         const emailBtn = document.getElementById('contact-btn');
         const currentHref = emailBtn.getAttribute('href');
         emailBtn.setAttribute('href', currentHref + ": " + cleanHost);

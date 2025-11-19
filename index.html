@@ -3,111 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Domain For Sale</title>
+    <title>Premium Domain For Sale</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-color: #0f172a; /* Dark Slate Blue */
-            --card-bg: #1e293b;   /* Lighter Blue-Grey */
-            --text-main: #f8fafc;
-            --text-sub: #94a3b8;
-            --accent: #38bdf8;    /* Light Blue */
-            --btn-hover: #0ea5e9;
+            /* Deeper, more sophisticated blue theme */
+            --bg-dark: #0D162B; /* Very dark blue */
+            --bg-light: #1A2641; /* Slightly lighter blue for gradient top */
+            
+            /* Glass card colors */
+            --card-bg: rgba(25, 38, 65, 0.7); /* Slightly darker card with transparency */
+            --card-border: rgba(255, 255, 255, 0.12); /* Brighter border for better contrast */
+            
+            /* Text & Accents */
+            --text-main: #E0E7FF; /* Off-white for main text */
+            --text-sub: #A3B3D9; /* Lighter blue-grey for secondary text */
+            --accent: #63B3ED; /* Softer, appealing light blue */
+            --btn-hover: #4299E1; /* Darker blue on hover */
         }
         
         body {
             margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 0%, var(--bg-light) 0%, var(--bg-dark) 70%);
             color: var(--text-main);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0; /* Start invisible for fade-in */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .container {
             text-align: center;
             background: var(--card-bg);
-            padding: 3rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            max-width: 400px;
-            width: 90%;
+            backdrop-filter: blur(15px); /* Increased blur for more pronounced glass effect */
+            -webkit-backdrop-filter: blur(15px);
+            padding: 3.5rem 3rem; /* Slightly more vertical padding */
+            border-radius: 28px; /* Slightly larger border radius */
+            border: 1px solid var(--card-border);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6); /* Deeper shadow */
+            max-width: 680px; /* Wider card for better presence on large screens */
+            width: 100%;
+            box-sizing: border-box;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        
+        /* Subtle hover effect on the card itself */
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.7);
         }
 
         h1 {
-            font-size: 1.2rem;
+            font-size: 0.95rem; /* Slightly larger and clearer heading */
+            font-weight: 700; /* Bolder */
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
+            letter-spacing: 3.5px;
+            margin-bottom: 1.2rem;
+            opacity: 0.9;
         }
 
         .domain-name {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 0 0 1.5rem 0;
-            word-break: break-word; /* Prevents long domains from breaking layout */
+            /* Clamp sizing for responsive text: min 1.8rem, fluid 5.5vw, max 4rem */
+            font-size: clamp(1.8rem, 5.5vw, 4rem); 
+            font-weight: 800;
+            margin: 0 0 1.8rem 0;
+            line-height: 1.15; /* Better line spacing for larger text */
+            word-break: break-word; /* Prevents overflow */
+            background: linear-gradient(to right, #ffffff, #e2e8f0); /* Brighter gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         p {
             color: var(--text-sub);
-            line-height: 1.6;
-            margin-bottom: 2rem;
+            font-size: 1.15rem; /* Slightly larger paragraph text for readability */
+            line-height: 1.7;
+            margin-bottom: 2.8rem; /* More space below paragraph */
+            max-width: 90%; /* Restrict width for better readability on wide screens */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .btn {
             display: inline-block;
             background-color: var(--accent);
-            color: #0f172a;
-            padding: 1rem 2rem;
+            color: var(--bg-dark); /* Button text color matches background */
+            padding: 1.3rem 2.8rem; /* More prominent button */
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: background 0.3s ease;
+            font-weight: 700;
+            font-size: 1.15rem;
+            border-radius: 14px; /* Larger border radius for button */
+            transition: all 0.3s ease;
             width: 100%;
-            box-sizing: border-box;
-            margin-bottom: 1rem;
+            max-width: 340px; /* Slightly wider button */
+            box-shadow: 0 6px 25px rgba(99, 179, 237, 0.35); /* Stronger glow */
         }
 
         .btn:hover {
             background-color: var(--btn-hover);
+            transform: translateY(-3px) scale(1.02); /* More noticeable hover */
+            box-shadow: 0 8px 30px rgba(99, 179, 237, 0.5);
         }
 
         .phone-number {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            margin-top: 1.5rem;
-            display: block;
+            margin-top: 2.2rem; /* More space above phone number */
+            font-size: 1.05rem;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px; /* Increased gap */
+            font-weight: 600;
+        }
+        
+        .phone-icon {
+            color: var(--text-main); 
+            font-size: 1.2em; /* Slightly larger icon */
         }
 
-        /* Javascript will automatically insert the current domain name */
+        /* Mobile specific adjustments */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px; /* Less padding on very small screens */
+            }
+            .container {
+                padding: 2.5rem 1.8rem; /* Adjust card padding for smaller screens */
+                border-radius: 20px; /* Slightly smaller radius on mobile */
+            }
+            h1 {
+                font-size: 0.8rem;
+                letter-spacing: 2.5px;
+            }
+            p {
+                font-size: 1rem;
+                max-width: 100%; /* Allow paragraph to take full width */
+                margin-bottom: 2rem;
+            }
+            .btn {
+                padding: 1.1rem 2rem;
+                font-size: 1rem;
+                max-width: 100%; /* Button takes full width on small screens */
+            }
+            .phone-number {
+                margin-top: 1.8rem;
+                font-size: 0.95rem;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Premium Domain For Sale</h1>
+        <h1>Available For Purchase</h1>
         <div class="domain-name" id="domain-display">www.example.com</div>
-        <p>This domain name is currently available for purchase. If you are interested, please inquire below.</p>
+        <p>This premium domain is currently available. Secure this digital asset for your brand today.</p>
         
-        <a href="mailto:domainbroker0@gmail.com?subject=Domain Inquiry" class="btn" id="contact-btn">
-            Contact via Email
+        <a href="mailto:your-email@example.com?subject=Domain Inquiry" class="btn" id="contact-btn">
+            Inquire via Email
         </a>
 
         <div class="phone-number">
-            📞 (316) 312-5785
+            <span class="phone-icon">📞</span> (555) 123-4567
         </div>
     </div>
 
     <script>
-        // This script automatically puts the visitor's current URL into the text
-        document.getElementById('domain-display').innerText = window.location.hostname;
+        // 1. Get the hostname (e.g., www.example.com)
+        let cleanHost = window.location.hostname;
+
+        // 2. Optional: Remove 'www.' if you want a cleaner look (e.g. just example.com)
+        // Remove the "//" at the start of the next line to enable this:
+        // cleanHost = cleanHost.replace(/^www\./, '');
+
+        // 3. Insert text
+        document.getElementById('domain-display').innerText = cleanHost;
         
-        // This updates the email subject line to include the domain name automatically
+        // 4. Update email link subject
         const emailBtn = document.getElementById('contact-btn');
         const currentHref = emailBtn.getAttribute('href');
-        emailBtn.setAttribute('href', currentHref + ": " + window.location.hostname);
+        emailBtn.setAttribute('href', currentHref + ": " + cleanHost);
     </script>
 
 </body>

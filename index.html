@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain For Sale</title>
+    <style>
+        :root {
+            --bg-color: #0f172a; /* Dark Slate Blue */
+            --card-bg: #1e293b;   /* Lighter Blue-Grey */
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --accent: #38bdf8;    /* Light Blue */
+            --btn-hover: #0ea5e9;
+        }
+        
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .domain-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 1.5rem 0;
+            word-break: break-word; /* Prevents long domains from breaking layout */
+        }
+
+        p {
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #0f172a;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--btn-hover);
+        }
+
+        .phone-number {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-top: 1.5rem;
+            display: block;
+        }
+
+        /* Javascript will automatically insert the current domain name */
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Premium Domain For Sale</h1>
+        <div class="domain-name" id="domain-display">www.example.com</div>
+        <p>This domain name is currently available for purchase. If you are interested, please inquire below.</p>
+        
+        <a href="mailto:your-email@example.com?subject=Domain Inquiry" class="btn" id="contact-btn">
+            Contact via Email
+        </a>
+
+        <div class="phone-number">
+            📞 (555) 123-4567
+        </div>
+    </div>
+
+    <script>
+        // This script automatically puts the visitor's current URL into the text
+        document.getElementById('domain-display').innerText = window.location.hostname;
+        
+        // This updates the email subject line to include the domain name automatically
+        const emailBtn = document.getElementById('contact-btn');
+        const currentHref = emailBtn.getAttribute('href');
+        emailBtn.setAttribute('href', currentHref + ": " + window.location.hostname);
+    </script>
+
+</body>
+</html>
